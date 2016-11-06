@@ -40,6 +40,9 @@ module.exports = function() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+//middleware for method-override
+app.use(methodOverride());
+
   //use of public folder
   app.use(express.static(__dirname + "/public"));
   app.use('/node_modules', express.static(__dirname + '/node_modules'));
