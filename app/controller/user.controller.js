@@ -83,6 +83,7 @@ module.exports = {
       logout: function(req, res, next){
         blacklist.revoke(req.user);
         req.logOut();
+        req.session.destroy();
         res.status(200).json("Successful logout!");
       },
 
