@@ -14,7 +14,8 @@ module.exports = function(app) {
   app.route('/sessions')
   .get(userController.session)
 
-
+  app.route('/changepassword')
+  .post(userController.password)
 
 
 }

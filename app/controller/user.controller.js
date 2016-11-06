@@ -89,7 +89,25 @@ module.exports = {
 
       session: function(req, res, next){
         var sessions = req.sessionID ;
-        res.json(req.sessionID);
+        res.json(sessions);
+      },
+
+      password: function(req, res, next){
+        var email = req.body.email;
+        var oldPassword = req.body.password;
+        var newPassword = req.body.newpassword;
+        User.findOne({email: email}).exec(function(err, user){
+          if (err) {
+            console.log(err);
+            res.status(400).json(err);
+          } else {
+            if (bcrypt.compareSync(password, user.password)) {
+              user.password = newPassword;
+            } else {
+              res.status(400).json("please check your password entry");
+            }
+          }
+        })
       }
 
 
