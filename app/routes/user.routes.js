@@ -5,6 +5,8 @@ module.exports = function(app) {
   app.route('/signup')
   .post(userController.signup)
 
+  app.route('/login')
+  .post(userController.login)
 
 
 
