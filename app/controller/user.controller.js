@@ -5,6 +5,9 @@ var passportConf = require('../../config/security/passport')(passport);
 var bcrypt = require("bcrypt-nodejs");
 var jwt = require("jsonwebtoken");
 var blacklist = require('express-jwt-blacklist');
+var NodeSession = require('node-session');
+
+
 
 blacklist.configure({
   tokenId: 'id'
@@ -81,6 +84,12 @@ module.exports = {
         blacklist.revoke(req.user);
         req.logOut();
         res.status(200).json("Successful logout!");
+      },
+
+      session: function(req, res, next){
+        var sessions = req.sessionID ;
+        res.json(req.sessionID);
       }
+
 
   }

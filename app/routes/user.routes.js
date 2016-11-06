@@ -11,7 +11,8 @@ module.exports = function(app) {
   app.route('/logout')
   .post(userController.logout)
 
-
+  app.route('/sessions')
+  .get(userController.session)
 
 
 

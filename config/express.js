@@ -10,6 +10,7 @@ var passport = require('passport');
 var secret = require('./security/secret');
 var User = require('../app/models/user.model');
 
+
 module.exports = function() {
   var app = express();
 
@@ -20,6 +21,8 @@ module.exports = function() {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
+
+
 
   //for JSON
   app.use(bodyParser.urlencoded({
