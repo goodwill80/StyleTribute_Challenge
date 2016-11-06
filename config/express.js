@@ -19,6 +19,8 @@ module.exports = function() {
     next();
   });
 
+
+
   //middleware for morgan and compression
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -43,12 +45,14 @@ module.exports = function() {
   //middleware for method-override
   app.use(methodOverride());
 
+  //initialise router
+  require('../app/routes/user.routes')(app);
+
   //use of public folder
   app.use(express.static(__dirname + "/public"));
   app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-  //initialise router
-  require('../app/routes/user.routes')(app);
+
 
   return app;
 }

@@ -1,8 +1,9 @@
 var express = require('./config/express');
 var mongoose = require('./config/mongoose');
 var secret = require('./config/security/secret');
-var app = express();
 var db = mongoose();
+var app = express();
+
 
 
 
