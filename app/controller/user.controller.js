@@ -27,21 +27,22 @@ module.exports = {
         } else {
           user.save(function(err, user) {
             if (err) return res.status(400).send(err);
-            var payload = {
-              id: user.id,
-              email: user.email
-            };
-            var expiryObj = {
-              expiresIn: '3h'
-            };
-            var jwt_token = jwt.sign(payload, secret.secretKey, expiryObj);
-            var userID = user.id;
-            passport.authenticate('local')(req, res, function() {
-              return res.status(200).send({
-                token: jwt_token,
-                id: userID,
-              });
-            });
+            res.status(200).json("Signup Successful!");
+            // var payload = {
+            //   id: user.id,
+            //   email: user.email
+            // };
+            // var expiryObj = {
+            //   expiresIn: '3h'
+            // };
+            // var jwt_token = jwt.sign(payload, secret.secretKey, expiryObj);
+            // var userID = user.id;
+            // passport.authenticate('local')(req, res, function() {
+            //   return res.status(200).send({
+            //     token: jwt_token,
+            //     id: userID,
+            //   });
+            // });
           })
         }
       })
@@ -79,7 +80,7 @@ module.exports = {
       logout: function(req, res, next){
         blacklist.revoke(req.user);
         req.logOut();
-        res.send(200);
+        res.status(200).json("Successful logout!");
       }
 
   }

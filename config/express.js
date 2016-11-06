@@ -27,6 +27,13 @@ module.exports = function() {
     }));
     app.use(bodyParser.json());
 
+  //user middleware
+  app.use(function(req, res, next){
+     res.locals.user = req.user;
+     next();
+   })
+
+
 
   //middleware for morgan and compression
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
