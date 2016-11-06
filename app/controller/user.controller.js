@@ -1,10 +1,14 @@
 var User = require('mongoose').model('User');
 var passport = require('passport');
 var secret = require('../../config/security/secret');
-// var LocalStrategy = require('passport-local').Strategy;
 var passportConf = require('../../config/security/passport')(passport);
 var bcrypt = require("bcrypt-nodejs");
 var jwt = require("jsonwebtoken");
+var blacklist = require('express-jwt-blacklist');
+
+blacklist.configure({
+  tokenId: 'id'
+});
 
 
 
@@ -70,6 +74,12 @@ module.exports = {
             }
           }
         })
+      },
+
+      logout: function(req, res, next){
+        blacklist.revoke(req.user);
+        req.logOut();
+        res.send(200);
       }
 
   }
