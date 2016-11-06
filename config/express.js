@@ -6,6 +6,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var Mongo = require('connect-mongo')(session);
 var passport = require('passport');
+var secret = require('./security/secret');
 
 
 
@@ -27,6 +28,17 @@ module.exports = function() {
   } else if (process.env.NODE_ENV === 'production') {
     app.use(compress());
   }
+
+//Setting up of session storage for cookies and initialising passport
+  app.use(cookieParser());
+  app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: secret.secretKey,
+    store: new Mongo({url: secret.database , autoReconnect:true})
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   //use of public folder
   app.use(express.static(__dirname + "/public"));
