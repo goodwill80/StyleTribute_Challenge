@@ -1,5 +1,5 @@
 module.exports = {
-  database:'mongodb://root:iLuvu80^@ds029605.mlab.com:29605/rewardsmarket',
+  database:'mongodb://root:password@ds057476.mlab.com:57476/style',
   port: 5000,
   secretKey: "mykey#$%^"
 }

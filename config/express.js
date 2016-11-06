@@ -2,11 +2,13 @@ var express = require("express");
 var morgan = require("morgan");
 var compress = require('compression');
 var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var Mongo = require('connect-mongo')(session);
 var passport = require('passport');
 var secret = require('./security/secret');
+var User = require('../app/models/user.model');
 
 module.exports = function() {
   var app = express();
@@ -19,6 +21,11 @@ module.exports = function() {
     next();
   });
 
+  //for JSON
+  app.use(bodyParser.urlencoded({
+      extended: false
+    }));
+    app.use(bodyParser.json());
 
 
   //middleware for morgan and compression
