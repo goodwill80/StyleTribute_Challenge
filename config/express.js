@@ -1,7 +1,11 @@
 var express = require("express");
 var morgan = require("morgan");
 var compress = require('compression');
-
+var methodOverride = require('method-override');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var Mongo = require('connect-mongo')(session);
+var passport = require('passport');
 
 
 
